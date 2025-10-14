@@ -40,21 +40,62 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F5F5),
+      backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
-        title: const Text('Детали товара'),
+        leading: IconButton(
+          icon: Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: Colors.grey.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: const Icon(
+              Icons.arrow_back_ios_new_rounded,
+              size: 18,
+            ),
+          ),
+          onPressed: () => Navigator.pop(context),
+        ),
+        title: const Text(
+          'Детали товара',
+          style: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
+            letterSpacing: -0.5,
+          ),
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
+        surfaceTintColor: Colors.white,
         actions: [
-          IconButton(
-            icon: _isRefreshing
-                ? const SizedBox(
-                    width: 20,
-                    height: 20,
-                    child: CircularProgressIndicator(strokeWidth: 2),
-                  )
-                : const Icon(Icons.refresh),
-            onPressed: _isRefreshing ? null : _refreshProduct,
+          Container(
+            margin: const EdgeInsets.only(right: 8),
+            child: IconButton(
+              icon: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF7232F2).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: _isRefreshing
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(
+                          strokeWidth: 2,
+                          valueColor: AlwaysStoppedAnimation<Color>(
+                            Color(0xFF7232F2),
+                          ),
+                        ),
+                      )
+                    : const Icon(
+                        Icons.refresh_rounded,
+                        color: Color(0xFF7232F2),
+                        size: 20,
+                      ),
+              ),
+              onPressed: _isRefreshing ? null : _refreshProduct,
+            ),
           ),
         ],
       ),
@@ -88,25 +129,60 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   Widget _buildProductImage(Product product) {
     return Container(
-      color: Colors.white,
-      child: Center(
-        child: CachedNetworkImage(
-          imageUrl: product.image,
-          height: 300,
-          fit: BoxFit.contain,
-          placeholder: (context, url) => const SizedBox(
-            height: 300,
-            child: Center(
-              child: CircularProgressIndicator(),
-            ),
+      margin: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.06),
+            blurRadius: 24,
+            offset: const Offset(0, 8),
           ),
-          errorWidget: (context, url, error) => Container(
-            height: 300,
-            color: Colors.grey[200],
-            child: const Icon(
-              Icons.image_not_supported,
-              size: 64,
-              color: Colors.grey,
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: AspectRatio(
+          aspectRatio: 3 / 4,
+          child: CachedNetworkImage(
+            imageUrl: product.image,
+            fit: BoxFit.cover,
+            placeholder: (context, url) => Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.grey[100]!,
+                    Colors.grey[200]!,
+                  ],
+                ),
+              ),
+              child: const Center(
+                child: CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                    Color(0xFF7232F2),
+                  ),
+                ),
+              ),
+            ),
+            errorWidget: (context, url, error) => Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.grey[100]!,
+                    Colors.grey[200]!,
+                  ],
+                ),
+              ),
+              child: Icon(
+                Icons.image_not_supported_outlined,
+                size: 64,
+                color: Colors.grey[400],
+              ),
             ),
           ),
         ),
@@ -116,42 +192,72 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
 
   Widget _buildProductInfo(Product product) {
     return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(top: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             product.name,
             style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
+              fontSize: 22,
+              fontWeight: FontWeight.w700,
+              color: Color(0xFF1A1A1A),
+              height: 1.3,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF0EEFF),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.tag_rounded,
+                  size: 18,
+                  color: const Color(0xFF7232F2).withOpacity(0.8),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Артикул: ${product.article}',
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w600,
+                    color: const Color(0xFF7232F2).withOpacity(0.9),
+                  ),
+                ),
+              ],
             ),
           ),
           const SizedBox(height: 12),
           Row(
             children: [
-              const Icon(Icons.article, size: 16, color: Colors.grey),
-              const SizedBox(width: 8),
-              Text(
-                'Артикул: ${product.article}',
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[700],
-                ),
+              Icon(
+                Icons.storefront_rounded,
+                size: 18,
+                color: Colors.grey[600],
               ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Row(
-            children: [
-              const Icon(Icons.business, size: 16, color: Colors.grey),
               const SizedBox(width: 8),
               Text(
                 product.brand,
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
                   color: Colors.grey[700],
                 ),
               ),
@@ -166,30 +272,33 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     final formatter = NumberFormat('#,##0', 'ru_RU');
 
     return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(top: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       child: Row(
         children: [
           Expanded(
             child: _buildStatItem(
               'Цена',
               '${formatter.format(product.price.toInt())} ₽',
-              Colors.purple,
+              const Color(0xFF7232F2),
+              Icons.attach_money_rounded,
             ),
           ),
+          const SizedBox(width: 12),
           Expanded(
             child: _buildStatItem(
               'Остаток',
               formatter.format(product.stock),
-              Colors.blue,
+              const Color(0xFF007AFF),
+              Icons.inventory_2_rounded,
             ),
           ),
+          const SizedBox(width: 12),
           Expanded(
             child: _buildStatItem(
               'Отзывы',
               formatter.format(product.reviews),
-              Colors.green,
+              const Color(0xFF34C759),
+              Icons.star_rounded,
             ),
           ),
         ],
@@ -197,26 +306,56 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     );
   }
 
-  Widget _buildStatItem(String label, String value, Color color) {
-    return Column(
-      children: [
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[600],
+  Widget _buildStatItem(String label, String value, Color color, IconData icon) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(16),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
           ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          value,
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: color,
+        ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: color.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(
+              icon,
+              size: 20,
+              color: color,
+            ),
           ),
-        ),
-      ],
+          const SizedBox(height: 12),
+          Text(
+            label,
+            style: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey[600],
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            value,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w700,
+              color: color,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ],
+      ),
     );
   }
 
@@ -229,20 +368,53 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     }
 
     return Container(
-      color: Colors.white,
-      padding: const EdgeInsets.all(16),
-      margin: const EdgeInsets.only(top: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.04),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'История изменений',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w600,
-            ),
+          Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xFF7232F2),
+                      Color(0xFF9D5EF5),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.analytics_rounded,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              ),
+              const SizedBox(width: 12),
+              const Text(
+                'История изменений',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xFF1A1A1A),
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 20),
           SizedBox(
             height: 250,
             child: LineChart(
@@ -347,33 +519,88 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          ElevatedButton.icon(
-            onPressed: _isRefreshing ? null : _refreshProduct,
-            icon: const Icon(Icons.refresh, color: Colors.white),
-            label: const Text(
-              'Обновить данные',
-              style: TextStyle(color: Colors.white),
+          Container(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                colors: [
+                  Color(0xFF7232F2),
+                  Color(0xFF9D5EF5),
+                ],
+              ),
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF7232F2).withOpacity(0.4),
+                  blurRadius: 20,
+                  offset: const Offset(0, 8),
+                ),
+              ],
             ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF7232F2),
-              minimumSize: const Size(double.infinity, 50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+            child: ElevatedButton.icon(
+              onPressed: _isRefreshing ? null : _refreshProduct,
+              icon: Icon(
+                Icons.refresh_rounded,
+                color: Colors.white,
+                size: 22,
+              ),
+              label: const Text(
+                'Обновить данные',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.transparent,
+                shadowColor: Colors.transparent,
+                minimumSize: const Size(double.infinity, 56),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16),
+                ),
               ),
             ),
           ),
           const SizedBox(height: 12),
-          OutlinedButton.icon(
-            onPressed: () => _shareProduct(product),
-            icon: const Icon(Icons.share),
-            label: const Text('Поделиться'),
-            style: OutlinedButton.styleFrom(
-              minimumSize: const Size(double.infinity, 50),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: const Color(0xFF7232F2),
+                width: 2,
+              ),
+            ),
+            child: Material(
+              color: Colors.transparent,
+              child: InkWell(
+                onTap: () => _shareProduct(product),
+                borderRadius: BorderRadius.circular(16),
+                child: Container(
+                  height: 56,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.share_rounded,
+                        color: const Color(0xFF7232F2),
+                        size: 22,
+                      ),
+                      const SizedBox(width: 12),
+                      const Text(
+                        'Поделиться',
+                        style: TextStyle(
+                          color: Color(0xFF7232F2),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
+          const SizedBox(height: 20),
         ],
       ),
     );
@@ -399,4 +626,5 @@ ${product.name}
     );
   }
 }
+
 
