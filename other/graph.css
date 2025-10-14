@@ -1,0 +1,63 @@
+@font-face {
+  // название шрифта(чтобы не запутаться лучше указать название папки со шрифтом) 
+  font-family: "Rubik-Regular"; 
+  // адрес шрифта и тип 
+  src: url("/fonts/Rubik-Regular.ttf"); 
+  font-style: normal; 
+  /*font-weight: normal;*/
+  font-weight: 400;
+}
+
+#asd {
+    z-index: 1500;
+}
+
+
+#fon {
+    z-index: 1400;
+}
+
+#spin {
+    z-index: 1600;
+}
+
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+#170624124 {
+    transition: all 0.5s linear;
+}
+
+.move-right {
+    transform: translate3d(-100px, 0px, 0px);
+    transition: all 0.5s linear;
+}
+
+#aw2{
+height: 100px;
+  line-height: 100px;
+  text-align: center;
+  border: 2px dashed #f69c55;
+}
+
+
+
+
+
+
+#chart-container {
+  background-color: #fff;
+  position: relative;
+  height: 40vh;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  box-shadow: 0 0 2px 2px rgb(220, 220, 220);
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали товара - Аналитика Маркетплейсов</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="other/graph.css">
+    <link rel="preload" href="other/Rubik-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="icon" href="other/analytics-icon.png" type="image/png">
+</head>
+<body>
+    <div class="app-container">
+        <header class="product-header">
+            <div class="back-button" id="backButton">
+                <img src="other/main.svg" alt="Назад">
+            </div>
+            <h1>Детали товара</h1>
+            <div class="refresh-button" id="refreshButton">
+                <img src="other/refresh.svg" alt="Обновить">
+            </div>
+        </header>
+        
+        <div class="product-details" id="productDetails">
+            <div class="product-image">
+                <img id="productImage" src="other/null.png" alt="Фото товара">
+            </div>
+            
+            <div class="product-info">
+                <h2 id="productName">Загрузка...</h2>
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <img src="other/task-square.svg" alt="Артикул">
+                        <span id="productArticle">-</span>
+                    </div>
+                    <div class="meta-item">
+                        <img src="other/crown.svg" alt="Бренд">
+                        <span id="productBrand">-</span>
+                    </div>
+                </div>
+                
+                <div class="product-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">Цена</div>
+                        <div class="stat-value" id="productPrice">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Остаток</div>
+                        <div class="stat-value" id="productStock">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">Отзывы</div>
+                        <div class="stat-value" id="productReviews">-</div>
+                    </div>
+                </div>
+                
+                <div class="position-info">
+                    <div class="position-label">Позиция в выдаче</div>
+                    <div class="position-value" id="productPosition">-</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <div id="chart-container" style="width: 100%; height: 300px;"></div>
+            </div>
+            
+            <div class="product-actions">
+                <button class="action-button primary" id="updateButton">
+                    <img src="other/refresh.svg" alt="Обновить">
+                    <span>Обновить данные</span>
+                </button>
+                <button class="action-button secondary" id="shareButton">
+                    <img src="other/task-square.svg" alt="Поделиться">
+                    <span>Поделиться</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/product.js"></script>
+</body>
+</html> 

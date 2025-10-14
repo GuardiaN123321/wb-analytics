@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитика Маркетплейсов</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preload" href="other/Rubik-Regular.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="icon" href="other/analytics-icon.png" type="image/png">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Аналитика Маркетплейсов</h1>
+        </header>
+        
+        <div class="product-list" id="productList">
+            <!-- Здесь будут отображаться карточки товаров -->
+            <div class="empty-state" id="emptyState">
+                <p>Добавьте товары для отслеживания</p>
+                <p>Нажмите на кнопку "+" внизу экрана</p>
+            </div>
+        </div>
+        
+        <div class="add-button" id="addButton">
+            <img src="other/add-circle.svg" alt="Добавить товар">
+        </div>
+        
+        <!-- Модальное окно для добавления товара -->
+        <div class="modal" id="addModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Добавить товар</h2>
+                    <span class="close-button" id="closeModal">
+                        <img src="other/close.svg" alt="Закрыть">
+                    </span>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group">
+                        <label for="articleInput">Артикул товара Wildberries</label>
+                        <input type="number" id="articleInput" placeholder="Введите артикул товара">
+                    </div>
+                    <div class="scan-button" id="scanButton">
+                        <img src="other/scan.svg" alt="Сканировать">
+                        <span>Сканировать штрих-код</span>
+                    </div>
+                    <button class="add-product-button" id="addProductButton">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html> 
