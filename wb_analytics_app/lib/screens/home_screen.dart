@@ -4,6 +4,7 @@ import '../providers/products_provider.dart';
 import '../widgets/product_card.dart';
 import 'add_product_screen.dart';
 import 'product_detail_screen.dart';
+import 'comparison_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -14,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       backgroundColor: const Color(0xFFF8F9FA),
       appBar: AppBar(
         title: const Text(
-          'Аналитика Маркетплейсов',
+          '',
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.w700,
@@ -26,6 +27,31 @@ class HomeScreen extends StatelessWidget {
         shadowColor: Colors.black.withOpacity(0.05),
         surfaceTintColor: Colors.white,
         actions: [
+          Container(
+            margin: const EdgeInsets.only(right: 4),
+            child: IconButton(
+              icon: Container(
+                padding: const EdgeInsets.all(8),
+                decoration: BoxDecoration(
+                  color: const Color(0xFF7232F2).withOpacity(0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: const Icon(
+                  Icons.compare_arrows_rounded,
+                  color: Color(0xFF7232F2),
+                  size: 20,
+                ),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ComparisonScreen(),
+                  ),
+                );
+              },
+            ),
+          ),
           Container(
             margin: const EdgeInsets.only(right: 8),
             child: IconButton(

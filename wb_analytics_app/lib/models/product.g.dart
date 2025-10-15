@@ -19,6 +19,20 @@ Product _$ProductFromJson(Map<String, dynamic> json) => Product(
   history: (json['history'] as Map<String, dynamic>?)?.map(
     (k, e) => MapEntry(k, ProductHistory.fromJson(e as Map<String, dynamic>)),
   ),
+  rating: (json['rating'] as num?)?.toDouble(),
+  originalPrice: (json['originalPrice'] as num?)?.toDouble(),
+  discount: (json['discount'] as num?)?.toInt(),
+  description: json['description'] as String?,
+  images: (json['images'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  supplier: json['supplier'] as String?,
+  supplierId: (json['supplierId'] as num?)?.toInt(),
+  supplierRating: (json['supplierRating'] as num?)?.toDouble(),
+  category: json['category'] as String?,
+  categoryId: (json['categoryId'] as num?)?.toInt(),
+  colors: (json['colors'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  sizes: (json['sizes'] as List<dynamic>?)?.map((e) => e as String).toList(),
+  characteristics: json['characteristics'] as Map<String, dynamic>?,
+  purchasePrice: (json['purchasePrice'] as num?)?.toDouble(),
 );
 
 Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
@@ -32,6 +46,20 @@ Map<String, dynamic> _$ProductToJson(Product instance) => <String, dynamic>{
   'addedAt': instance.addedAt,
   'lastUpdated': instance.lastUpdated,
   'history': instance.history,
+  'rating': instance.rating,
+  'originalPrice': instance.originalPrice,
+  'discount': instance.discount,
+  'description': instance.description,
+  'images': instance.images,
+  'supplier': instance.supplier,
+  'supplierId': instance.supplierId,
+  'supplierRating': instance.supplierRating,
+  'category': instance.category,
+  'categoryId': instance.categoryId,
+  'colors': instance.colors,
+  'sizes': instance.sizes,
+  'characteristics': instance.characteristics,
+  'purchasePrice': instance.purchasePrice,
 };
 
 ProductHistory _$ProductHistoryFromJson(Map<String, dynamic> json) =>

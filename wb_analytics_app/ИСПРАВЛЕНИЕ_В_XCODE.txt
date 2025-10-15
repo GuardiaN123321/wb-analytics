@@ -17,7 +17,7 @@
 
 Скопируйте и вставьте ЭТИ команды в Терминал:
 
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 flutter clean
 rm -rf ios/Pods ios/Podfile.lock ios/.symlinks
 flutter pub get
@@ -122,7 +122,7 @@ open ios/Runner.xcworkspace
 1. Откройте Терминал
 
 2. Выполните:
-   cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+   cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
    open -a Simulator
    
 3. Дождитесь запуска симулятора
@@ -137,7 +137,7 @@ open ios/Runner.xcworkspace
 ═══════════════════════════════════════════════════════════════
 
 Если всё работает, вы увидите:
-✅ Приложение WB Analytics на симуляторе
+✅ Приложение Аналитика Маркетплейсов на симуляторе
 ✅ Главный экран со списком товаров
 ✅ Кнопка "+" для добавления товаров
 
@@ -161,7 +161,7 @@ open ios/Runner.xcworkspace
 
 Выполните в Терминале:
 
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 flutter doctor
 
 Для iOS должна быть зелёная галочка ✓

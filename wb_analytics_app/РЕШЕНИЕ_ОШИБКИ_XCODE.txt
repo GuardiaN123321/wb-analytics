@@ -14,7 +14,7 @@
 1. Откройте Терминал
 
 2. Перейдите в папку проекта:
-   cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+   cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 
 3. Запустите симулятор iOS:
    open -a Simulator
@@ -51,7 +51,7 @@
 
 В Терминале выполните по очереди:
 
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 flutter clean
 rm -rf ios/Pods ios/Podfile.lock ios/.symlinks
 flutter pub get
@@ -85,7 +85,7 @@ flutter pub get
 
 Попробуйте полную переустановку зависимостей:
 
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 
 # Очистите всё
 flutter clean
@@ -139,7 +139,7 @@ flutter doctor -v
 
 Пока настраиваете iOS, можете протестировать на macOS:
 
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 flutter run -d macos
 
 Или в Chrome:
@@ -177,7 +177,7 @@ flutter run -d chrome
 ╚═══════════════════════════════════════════════════════════════╝
 
 # Перейти в проект
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 
 # Открыть симулятор
 open -a Simulator

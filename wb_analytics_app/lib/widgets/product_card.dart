@@ -182,9 +182,73 @@ class ProductCard extends StatelessWidget {
                           ),
                         ],
                       ),
+                      // Рейтинг и отзывы
+                      if (product.rating != null || product.reviews > 0) ...[
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            if (product.rating != null) ...[
+                              Icon(
+                                Icons.star_rounded,
+                                size: 16,
+                                color: Colors.amber[600],
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                product.rating!.toStringAsFixed(1),
+                                style: const TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF1A1A1A),
+                                ),
+                              ),
+                              const SizedBox(width: 6),
+                            ],
+                            if (product.reviews > 0) ...[
+                              Icon(
+                                Icons.chat_bubble_outline_rounded,
+                                size: 14,
+                                color: Colors.grey[500],
+                              ),
+                              const SizedBox(width: 4),
+                              Text(
+                                '${formatter.format(product.reviews)} отз.',
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  color: Colors.grey[600],
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                            if (product.category != null) ...[
+                              Container(
+                                margin: const EdgeInsets.symmetric(horizontal: 6),
+                                width: 2,
+                                height: 2,
+                                decoration: BoxDecoration(
+                                  color: Colors.grey[400],
+                                  shape: BoxShape.circle,
+                                ),
+                              ),
+                              Expanded(
+                                child: Text(
+                                  product.category!,
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: Colors.grey[500],
+                                  ),
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                            ],
+                          ],
+                        ),
+                      ],
                       const SizedBox(height: 12),
                       Row(
                         children: [
+                          // Цена со скидкой
                           Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 12,
@@ -215,6 +279,28 @@ class ProductCard extends StatelessWidget {
                               ),
                             ),
                           ),
+                          // Скидка
+                          if (product.discount != null && product.discount! > 0) ...[
+                            const SizedBox(width: 6),
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8,
+                                vertical: 4,
+                              ),
+                              decoration: BoxDecoration(
+                                color: const Color(0xFFFF3B30),
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              child: Text(
+                                '-${product.discount}%',
+                                style: const TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w700,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                          ],
                           const SizedBox(width: 8),
                           Container(
                             padding: const EdgeInsets.symmetric(

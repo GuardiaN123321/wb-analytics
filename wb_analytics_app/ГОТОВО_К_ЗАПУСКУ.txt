@@ -16,7 +16,7 @@
 ──────────────────────
 Выполните в Терминале:
 
-open "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app/ios/Runner.xcworkspace"
+open "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app/ios/Runner.xcworkspace"
 
 ⚠️ ВАЖНО: Открывайте Runner.xcworkspace, НЕ Runner.xcodeproj!
 
@@ -60,7 +60,7 @@ open -a Simulator
 # 2. Дождитесь загрузки симулятора
 
 # 3. Запустите приложение
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 flutter run
 
 Это работает БЕЗ Xcode и БЕЗ проблем! ✅
@@ -90,7 +90,7 @@ flutter clean && flutter pub get && flutter run
 
 После успешного запуска вы увидите:
 
-📱 WB Analytics приложение на симуляторе
+📱 Аналитика Маркетплейсов приложение на симуляторе
 🏠 Главный экран со списком товаров
 ➕ Кнопка добавления товара
 ✨ Красивый фиолетовый дизайн
@@ -101,7 +101,7 @@ flutter clean && flutter pub get && flutter run
 
 Выполните в Терминале:
 
-cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 flutter clean
 rm -rf ios/Pods ios/Podfile.lock
 flutter pub get

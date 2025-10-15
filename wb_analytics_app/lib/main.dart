@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (_) => ProductsProvider(),
       child: MaterialApp(
-        title: 'WB Analytics',
+        title: 'Аналитика Маркетплейсов',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(

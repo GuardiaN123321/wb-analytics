@@ -40,7 +40,7 @@ class ProductsProvider with ChangeNotifier {
   }
 
   /// Добавление нового товара
-  Future<bool> addProduct(String articleId) async {
+  Future<bool> addProduct(String articleId, {double? purchasePrice}) async {
     try {
       _isLoading = true;
       _error = null;
@@ -56,7 +56,7 @@ class ProductsProvider with ChangeNotifier {
       }
 
       // Получаем информацию о товаре
-      final product = await _apiService.fetchProductInfo(articleId);
+      final product = await _apiService.fetchProductInfo(articleId, purchasePrice: purchasePrice);
       
       if (product == null) {
         _error = 'Не удалось найти товар с указанным артикулом';
@@ -122,13 +122,29 @@ class ProductsProvider with ChangeNotifier {
         );
       }
 
-      // Обновляем товар
+      // Обновляем товар со ВСЕМИ новыми данными
       final updatedProduct = product.copyWith(
+        name: updatedData.name,
+        brand: updatedData.brand,
         price: updatedData.price,
         stock: updatedData.stock,
         reviews: updatedData.reviews,
         lastUpdated: DateTime.now().millisecondsSinceEpoch,
         history: history,
+        // Новые поля
+        rating: updatedData.rating,
+        originalPrice: updatedData.originalPrice,
+        discount: updatedData.discount,
+        description: updatedData.description,
+        images: updatedData.images,
+        supplier: updatedData.supplier,
+        supplierId: updatedData.supplierId,
+        supplierRating: updatedData.supplierRating,
+        category: updatedData.category,
+        categoryId: updatedData.categoryId,
+        colors: updatedData.colors,
+        sizes: updatedData.sizes,
+        characteristics: updatedData.characteristics,
       );
 
       await _storageService.updateProduct(updatedProduct);

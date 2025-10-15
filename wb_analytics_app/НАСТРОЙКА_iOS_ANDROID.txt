@@ -173,7 +173,7 @@ flutter doctor -v
 
 1. Откройте терминал
 2. Перейдите в папку проекта:
-   cd "/Users/ilgiz/Documents/WB Analytics/wb_analytics_app"
+   cd "/Users/ilgiz/Documents/Аналитика Маркетплейсов/wb_analytics_app"
 
 3. Запустите симулятор/эмулятор
 4. Выполните: flutter run

@@ -30,7 +30,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
     });
 
     final provider = context.read<ProductsProvider>();
-    final success = await provider.addProduct(_articleController.text.trim());
+    final success = await provider.addProduct(
+      _articleController.text.trim(),
+    );
 
     if (!mounted) return;
 
@@ -226,46 +228,6 @@ class _AddProductScreenState extends State<AddProductScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              // Кнопка сканирования
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: Colors.grey.withOpacity(0.2),
-                    width: 1.5,
-                  ),
-                ),
-                child: Material(
-                  color: Colors.transparent,
-                  child: InkWell(
-                    borderRadius: BorderRadius.circular(16),
-                    onTap: null, // Будет реализовано в будущем
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.qr_code_scanner_rounded,
-                            color: Colors.grey[400],
-                            size: 22,
-                          ),
-                          const SizedBox(width: 12),
-                          Text(
-                            'Сканировать штрих-код',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                              color: Colors.grey[400],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 24),
               // Подсказка
               Container(
                 padding: const EdgeInsets.all(16),
